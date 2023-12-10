@@ -7,18 +7,40 @@ import styled from "styled-components";
 const UseTransition = () => {
   const [inputText, setText] = useState("");
   const [boxCount, setBoxCount] = useState(0);
-
+  const [isPending, startTransition] = useTransition();
   const handleInput = (e) => {
     setText(e.target.value);
-
-    setBoxCount(inputText.length);
+    startTransition(() => {
+      setBoxCount(inputText.length);
+    });
   };
 
   return (
     <TransitionWrapper>
       <input type="text" onChange={handleInput} value={inputText} />
 
-      <TransitionContainer>
+      {isPending ? (
+        <TransitionContainer>Loading...</TransitionContainer>
+      ) : (
+        <TransitionContainer>
+          {Array(boxCount)
+            .fill(null)
+            .map((_, index) => (
+              <BoxRenderWrapper key={index}>
+                <BoxRender />
+                <BoxRender />
+                <BoxRender />
+                <BoxRender />
+                <BoxRender />
+                <BoxRender />
+                <BoxRender />
+                <BoxRender />
+                <BoxRender />
+              </BoxRenderWrapper>
+            ))}
+        </TransitionContainer>
+      )}
+      {/* <TransitionContainer>
         {Array(boxCount)
           .fill(null)
           .map((_, index) => (
@@ -34,7 +56,7 @@ const UseTransition = () => {
               <BoxRender />
             </BoxRenderWrapper>
           ))}
-      </TransitionContainer>
+      </TransitionContainer> */}
     </TransitionWrapper>
   );
 };
