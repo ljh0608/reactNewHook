@@ -7,8 +7,6 @@ const page = () => {
   return (
     <UseIdWrapper>
       <Description />
-      <Description />
-      <Description />
     </UseIdWrapper>
   );
 };

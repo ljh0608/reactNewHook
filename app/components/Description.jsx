@@ -3,12 +3,8 @@
 import { useId, useState } from "react";
 
 import styled from "styled-components";
-import uuid from "react-uuid";
 
 const Description = () => {
-  // const uuid1 = uuid();
-  // // console.log(uuid1);
-  // const id = useId();
   return (
     <div>
       <UseIdContainer>
